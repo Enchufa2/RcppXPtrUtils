@@ -1,0 +1,17 @@
+Package: RcppXPtrUtils
+Type: Package
+Title: XPtr Add-ons for 'Rcpp'
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
+Description: Provides the means to compile user-provided C++ functions using 
+  'Rcpp::cppFunction' and to return an 'XPtr' that can be passed to other C++ components.
+License: MIT + file LICENSE
+Encoding: UTF-8
+URL: https://github.com/Enchufa2/RcppXPtrUtils
+BugReports: https://github.com/Enchufa2/RcppXPtrUtils/issues
+Depends: R (>= 3.0.0)
+Imports: Rcpp
+Suggests: testthat
+ByteCompile: yes
+RoxygenNote: 6.0.1
