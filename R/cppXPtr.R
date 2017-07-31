@@ -19,24 +19,16 @@ cppXPtr <- function(code,
                     showOutput = verbose,
                     verbose = getOption("verbose"))
 {
-  stopifnot(.isFunction(code))
-
-  # get signature
-  sig <- strsplit(code, "[[:space:]]*\\{")[[1]][[1]]
-  sig <- gsub("&", "& ", sig)
-  sig <- strsplit(sig, "[[:space:]]*\\(")[[1]]
-  sig.args <- sig[[2]]
-  sig <- strsplit(sig[[1]], "[[:space:]]+")[[1]]
-  sig.name <- sig[[length(sig)]]
-  sig.retv <- paste(sig[seq_len(length(sig)-1)], collapse=" ")
+  stopifnot(isFunction(code))
 
   # append a getter
+  code <- sanitize_amp(code)
   code <- paste(c(
     "SEXP getXPtr();",
     code,
     "SEXP getXPtr() {",
-    paste("  typedef", sig.retv, "(*funcPtr)(", sig.args, ";"),
-    paste("  return XPtr<funcPtr>(new funcPtr(&", sig.name, "));"),
+    paste("  typedef", .type(code), "(*funcPtr)(", .args(code), ";"),
+    paste("  return XPtr<funcPtr>(new funcPtr(&", .fname(code), "));"),
     "}"), collapse="\n")
 
   # source cpp into a controlled environment
@@ -47,7 +39,3 @@ cppXPtr <- function(code,
   # return XPtr
   env$getXPtr()
 }
-
-# basic checks
-.isFunction <- function(code)
-  grepl("^[[:alnum:][:space:]_&]*\\([[:alnum:][:space:]_&,]*\\)[[:space:]]*\\{", code)
