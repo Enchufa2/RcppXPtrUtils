@@ -1,14 +1,14 @@
-#' Define an XPtr with a C++ Implementation
+#' Define an \code{XPtr} with a C++ Implementation
 #'
-#' Dynamically define an XPtr with C++ source code. Compiles and links a shared
+#' Dynamically define an \code{XPtr} with C++ source code. Compiles and links a shared
 #' library with bindings to the C++ function using \code{\link{cppFunction}},
-#' then returns an XPtr that points to the function and can be used to be
+#' then returns an \code{XPtr} that points to the function and can be used to be
 #' plugged into another C++ backend.
 #'
 #' @inheritParams Rcpp::cppFunction
-#' @return An XPtr that points to the compiled function.
+#' @return An object of class \code{XPtr} that points to the compiled function.
 #'
-#' @seealso \code{\link{cppFunction}}, \code{\link{enforceXPtr}}
+#' @seealso \code{\link{cppFunction}}, \code{\link{checkXPtr}}
 #' @export
 cppXPtr <- function(code,
                     depends = character(),
@@ -23,7 +23,7 @@ cppXPtr <- function(code,
 
   # append a getter
   code <- sanitize_amp(code)
-  code <- paste(c(
+  wrapped_code <- paste(c(
     "SEXP getXPtr();",
     code,
     "SEXP getXPtr() {",
@@ -33,9 +33,16 @@ cppXPtr <- function(code,
 
   # source cpp into a controlled environment
   env <- new.env()
-  Rcpp::cppFunction(code, depends, plugins, includes, env,
+  Rcpp::cppFunction(wrapped_code, depends, plugins, includes, env,
                     rebuild, cacheDir, showOutput, verbose)
 
   # return XPtr
-  env$getXPtr()
+  ptr <- env$getXPtr()
+  attributes(ptr) <- list(
+    class = "XPtr",
+    type = .type(code),
+    fname = .fname(code),
+    args = .args(code, split=TRUE)
+  )
+  ptr
 }

@@ -70,9 +70,30 @@ microbenchmark(
 )
 #> Unit: microseconds
 #>                         expr       min         lq       mean    median
-#>      execute_r(func_r, 3, 1) 13783.965 15334.0235 17418.2084 16076.523
-#>  execute_cpp(func_cpp, 3, 1)   176.581   189.3385   272.8901   211.978
+#>      execute_r(func_r, 3, 1) 14071.998 15138.7775 16321.1108 15882.891
+#>  execute_cpp(func_cpp, 3, 1)   170.721   187.2275   241.4493   197.023
 #>         uq       max neval cld
-#>  18226.557 45697.646   100   b
-#>    297.195  1497.698   100  a
+#>  17202.599 22393.535   100   b
+#>    237.804  1907.006   100  a
+```
+
+The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to ensure that user-provided C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
+
+``` r
+func_cpp
+#> 'SEXP foo(int n, double l)' <pointer: 0x55f480625960>
+checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
+checkXPtr(func_cpp, "int", c("int", "double"))
+#> Error in checkXPtr(func_cpp, "int", c("int", "double")): 
+#>   Bad signature:
+#>     Wrong return type 'SEXP'. Should be: 'int'
+checkXPtr(func_cpp, "SEXP", c("int"))
+#> Error in checkXPtr(func_cpp, "SEXP", c("int")): 
+#>   Bad signature:
+#>     Wrong number of arguments. Should be: 1
+checkXPtr(func_cpp, "SEXP", c("double", "int"))
+#> Error in checkXPtr(func_cpp, "SEXP", c("double", "int")): 
+#>   Bad signature:
+#>     Wrong argument type 'int'. Should be: 'double
+#>     Wrong argument type 'double'. Should be: 'int
 ```

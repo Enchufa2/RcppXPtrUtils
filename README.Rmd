@@ -109,3 +109,13 @@ microbenchmark(
   execute_cpp(func_cpp, 3, 1)
 )
 ```
+
+The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to ensure that user-provided C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
+
+```{r, error=TRUE}
+func_cpp
+checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
+checkXPtr(func_cpp, "int", c("int", "double"))
+checkXPtr(func_cpp, "SEXP", c("int"))
+checkXPtr(func_cpp, "SEXP", c("double", "int"))
+```

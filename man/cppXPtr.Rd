@@ -2,7 +2,7 @@
 % Please edit documentation in R/cppXPtr.R
 \name{cppXPtr}
 \alias{cppXPtr}
-\title{Define an XPtr with a C++ Implementation}
+\title{Define an \code{XPtr} with a C++ Implementation}
 \usage{
 cppXPtr(code, depends = character(), plugins = character(),
   includes = character(), rebuild = FALSE,
@@ -43,14 +43,14 @@ cppXPtr(code, depends = character(), plugins = character(),
 }
 }
 \value{
-An XPtr that points to the compiled function.
+An object of class \code{XPtr} that points to the compiled function.
 }
 \description{
-Dynamically define an XPtr with C++ source code. Compiles and links a shared
+Dynamically define an \code{XPtr} with C++ source code. Compiles and links a shared
 library with bindings to the C++ function using \code{\link{cppFunction}},
-then returns an XPtr that points to the function and can be used to be
+then returns an \code{XPtr} that points to the function and can be used to be
 plugged into another C++ backend.
 }
 \seealso{
-\code{\link{cppFunction}}, \code{\link{enforceXPtr}}
+\code{\link{cppFunction}}, \code{\link{checkXPtr}}
 }
