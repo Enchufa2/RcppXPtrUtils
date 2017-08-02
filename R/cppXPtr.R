@@ -8,7 +8,7 @@
 #' @inheritParams Rcpp::cppFunction
 #' @return An XPtr that points to the compiled function.
 #'
-#' @seealso \code{\link{cppFunction}}
+#' @seealso \code{\link{cppFunction}}, \code{\link{enforceXPtr}}
 #' @export
 cppXPtr <- function(code,
                     depends = character(),

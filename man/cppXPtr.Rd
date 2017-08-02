@@ -52,5 +52,5 @@ then returns an XPtr that points to the function and can be used to be
 plugged into another C++ backend.
 }
 \seealso{
-\code{\link{cppFunction}}
+\code{\link{cppFunction}}, \code{\link{enforceXPtr}}
 }
