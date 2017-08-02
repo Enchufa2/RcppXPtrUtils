@@ -27,7 +27,7 @@ cppXPtr <- function(code,
     "SEXP getXPtr();",
     code,
     "SEXP getXPtr() {",
-    paste("  typedef", .type(code), "(*funcPtr)(", .args(code), ";"),
+    paste("  typedef", .type(code), "(*funcPtr)(", .args(code), ");"),
     paste("  return XPtr<funcPtr>(new funcPtr(&", .fname(code), "));"),
     "}"), collapse="\n")
 
