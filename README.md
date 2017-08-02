@@ -3,6 +3,8 @@
 RcppXPtrUtils: XPtr Add-ons for 'Rcpp'
 ======================================
 
+[![Build Status](http://travis-ci.org/Enchufa2/RcppXPtrUtils.svg?branch=master)](https://travis-ci.org/Enchufa2/RcppXPtrUtils) [![Coverage Status](http://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://codecov.io/gh/Enchufa2/RcppXPtrUtils) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils) [![Downloads](http://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
+
 The **RcppXPtrUtils** package provides the means to compile user-provided C++ functions using 'Rcpp::cppFunction' and to return an XPtr that can be passed to other C++ components.
 
 Installation
@@ -67,10 +69,10 @@ microbenchmark(
   execute_cpp(func_cpp, 3, 1)
 )
 #> Unit: microseconds
-#>                         expr       min         lq      mean    median
-#>      execute_r(func_r, 3, 1) 20641.592 21857.8275 23171.524 22578.654
-#>  execute_cpp(func_cpp, 3, 1)   198.842   215.6035   260.385   224.835
-#>          uq       max neval
-#>  23569.3390 32433.286   100
-#>    249.1155  1790.604   100
+#>                         expr       min         lq       mean    median
+#>      execute_r(func_r, 3, 1) 13783.965 15334.0235 17418.2084 16076.523
+#>  execute_cpp(func_cpp, 3, 1)   176.581   189.3385   272.8901   211.978
+#>         uq       max neval cld
+#>  18226.557 45697.646   100   b
+#>    297.195  1497.698   100  a
 ```
