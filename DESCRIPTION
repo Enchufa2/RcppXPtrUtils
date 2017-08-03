@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Authors@R: c(
     person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
 Description: Provides the means to compile user-supplied C++ functions with 
-  'Rcpp' and return an 'XPtr' that can be passed to other C++ components.
+  'Rcpp' and retrieve an 'XPtr' that can be passed to other C++ components.
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/Enchufa2/RcppXPtrUtils

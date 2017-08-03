@@ -5,7 +5,7 @@ RcppXPtrUtils: XPtr Add-ons for 'Rcpp'
 
 [![Build Status](http://travis-ci.org/Enchufa2/RcppXPtrUtils.svg?branch=master)](https://travis-ci.org/Enchufa2/RcppXPtrUtils) [![Coverage Status](http://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://codecov.io/gh/Enchufa2/RcppXPtrUtils) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils) [![Downloads](http://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 
-The **RcppXPtrUtils** package provides the means to cogmpile user-supplied C++ functions with 'Rcpp' and return an XPtr that can be passed to other C++ components.
+The **RcppXPtrUtils** package provides the means to compile user-supplied C++ functions with 'Rcpp' and retrieve an XPtr that can be passed to other C++ components.
 
 Installation
 ------------
@@ -74,19 +74,19 @@ microbenchmark::microbenchmark(
   execute_cpp(func_cpp, 1.5)
 )
 #> Unit: microseconds
-#>                        expr      min         lq      mean     median
-#>      execute_r(func_r, 1.5) 14769.58 16912.2805 20038.934 18225.5645
-#>  execute_cpp(func_cpp, 1.5)   187.06   213.2815   295.222   262.2375
+#>                        expr       min         lq       mean     median
+#>      execute_r(func_r, 1.5) 13559.538 14823.5195 15968.6778 15492.5525
+#>  execute_cpp(func_cpp, 1.5)   169.514   201.2005   264.3814   227.4585
 #>          uq       max neval cld
-#>  21215.6360 50918.294   100   b
-#>    321.0705  1160.138   100  a
+#>  16518.2570 21561.296   100   b
+#>    268.2495  1780.512   100  a
 ```
 
 The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to re-export `cppXPtr()` and ensure that user-supplied C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
 
 ``` r
 func_cpp
-#> 'SEXP foo(int n, double l)' <pointer: 0x55a481c65be0>
+#> 'SEXP foo(int n, double l)' <pointer: 0x55c9681442d0>
 checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
 checkXPtr(func_cpp, "int", c("int", "double"))
 #> Error in checkXPtr(func_cpp, "int", c("int", "double")): Bad XPtr signature:

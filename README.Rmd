@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 [![Downloads](http://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 
-The **RcppXPtrUtils** package provides the means to cogmpile user-supplied C++ functions with 'Rcpp' and return an XPtr that can be passed to other C++ components.
+The **RcppXPtrUtils** package provides the means to compile user-supplied C++ functions with 'Rcpp' and retrieve an XPtr that can be passed to other C++ components.
 
 ## Installation
 
