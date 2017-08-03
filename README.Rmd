@@ -19,9 +19,15 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 [![Downloads](http://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 
-The **RcppXPtrUtils** package provides the means to compile user-provided C++ functions using 'Rcpp::cppFunction' and to return an XPtr that can be passed to other C++ components.
+The **RcppXPtrUtils** package provides the means to cogmpile user-supplied C++ functions with 'Rcpp' and return an XPtr that can be passed to other C++ components.
 
 ## Installation
+
+Install the release version from CRAN:
+
+```{r, eval=FALSE}
+install.packages("RcppXPtrUtils")
+```
 
 The installation from GitHub requires the [devtools](https://github.com/hadley/devtools) package.
 
@@ -32,23 +38,23 @@ devtools::install_github("Enchufa2/RcppXPtrUtils")
 
 ## Use case
 
-Let's suppose we have a package with a core written in C++, connected to an R API with `Rcpp`. It accepts a user-provided R function to perform some processing:
+Let's suppose we have a package with a core written in C++, connected to an R API with `Rcpp`. It accepts a user-supplied R function to perform some processing:
 
 ```{C, eval=FALSE}
 #include <Rcpp.h>
 using namespace Rcpp;
 
 template <typename T>
-NumericVector core_processing(T func, int n, double l) {
+NumericVector core_processing(T func, double l) {
   double accum = 0;
   for (int i=0; i<1e3; i++)
-    accum += sum(as<NumericVector>(func(n, l)));
+    accum += sum(as<NumericVector>(func(3, l)));
   return NumericVector(1, accum);
 }
 
 // [[Rcpp::export]]
-NumericVector execute_r(Function func, int n, double l) {
-  return core_processing<Function>(func, n, l);
+NumericVector execute_r(Function func, double l) {
+  return core_processing<Function>(func, l);
 }
 ```
 
@@ -58,9 +64,9 @@ But calling R from C++ is slow, so we can think about improving the performance 
 typedef SEXP (*funcPtr)(int, double);
 
 // [[Rcpp::export]]
-NumericVector execute_cpp(SEXP func_, int n, double l) {
+NumericVector execute_cpp(SEXP func_, double l) {
   funcPtr func = *XPtr<funcPtr>(func_);
-  return core_processing<funcPtr>(func, n, l);
+  return core_processing<funcPtr>(func, l);
 }
 ```
 
@@ -70,47 +76,46 @@ Rcpp::sourceCpp(code='
 using namespace Rcpp;
 
 template <typename T>
-NumericVector core_processing(T func, int n, double l) {
+NumericVector core_processing(T func, double l) {
   double accum = 0;
   for (int i=0; i<1e3; i++)
-    accum += sum(as<NumericVector>(func(n, l)));
+    accum += sum(as<NumericVector>(func(3, l)));
   return NumericVector(1, accum);
 }
 
 // [[Rcpp::export]]
-NumericVector execute_r(Function func, int n, double l) {
-  return core_processing<Function>(func, n, l);
+NumericVector execute_r(Function func, double l) {
+  return core_processing<Function>(func, l);
 }
 
 typedef SEXP (*funcPtr)(int, double);
 
 // [[Rcpp::export]]
-NumericVector execute_cpp(SEXP func_, int n, double l) {
+NumericVector execute_cpp(SEXP func_, double l) {
   funcPtr func = *XPtr<funcPtr>(func_);
-  return core_processing<funcPtr>(func, n, l);
+  return core_processing<funcPtr>(func, l);
 }
 ')
 ```
 
-To easily leverage this feature, the `RcppXPtrUtils` package provides `cppXPtr()`, which compiles a user-provided C++ function using `Rcpp::cppFunction()` and returns an `XPtr`:
+To easily leverage this feature, the `RcppXPtrUtils` package provides `cppXPtr()`, which compiles a user-supplied C++ function using `Rcpp::cppFunction()` and returns an `XPtr`:
 
 ```{r}
 # compile the code above
 # Rcpp::sourceCpp(code='...')
 
 library(RcppXPtrUtils)
-library(microbenchmark)
 
 func_r <- function(n, l) rexp(n, l)
 func_cpp <- cppXPtr("SEXP foo(int n, double l) { return rexp(n, l); }")
 
-microbenchmark(
-  execute_r(func_r, 3, 1),
-  execute_cpp(func_cpp, 3, 1)
+microbenchmark::microbenchmark(
+  execute_r(func_r, 1.5),
+  execute_cpp(func_cpp, 1.5)
 )
 ```
 
-The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to ensure that user-provided C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
+The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to re-export `cppXPtr()` and ensure that user-supplied C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
 
 ```{r, error=TRUE}
 func_cpp

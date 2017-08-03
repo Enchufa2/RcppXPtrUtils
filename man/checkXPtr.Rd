@@ -4,7 +4,7 @@
 \alias{checkXPtr}
 \title{Check an \code{XPtr}'s Signature}
 \usage{
-checkXPtr(ptr, type, args = character())
+checkXPtr(ptr, type, args = character(), call. = TRUE)
 }
 \arguments{
 \item{ptr}{an object of class \code{XPtr} compiled with \code{\link{cppXPtr}}.}
@@ -12,11 +12,13 @@ checkXPtr(ptr, type, args = character())
 \item{type}{the return type.}
 
 \item{args}{a list of argument types.}
+
+\item{call.}{logical, indicating if the call should become part of the error message.}
 }
 \description{
 Check the signature (i.e., arguments and return type) of the output of
 \code{\link{cppXPtr}}, which is an external pointer wrapped in an object of
-class \code{XPtr}. If the user-provided C++ function does not match the
+class \code{XPtr}. If the user-supplied C++ function does not match the
 signature, the wrapper throws an informative error.
 }
 \seealso{
