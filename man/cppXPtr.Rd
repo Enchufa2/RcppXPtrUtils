@@ -51,6 +51,13 @@ library with bindings to the C++ function using \code{\link{cppFunction}},
 then returns an \code{XPtr} that points to the function and can be used to be
 plugged into another C++ backend.
 }
+\examples{
+\dontrun{
+ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
+class(ptr)
+print(ptr)
+}
+}
 \seealso{
 \code{\link{cppFunction}}, \code{\link{checkXPtr}}
 }

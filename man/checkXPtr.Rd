@@ -21,6 +21,13 @@ Check the signature (i.e., arguments and return type) of the output of
 class \code{XPtr}. If the user-supplied C++ function does not match the
 signature, the wrapper throws an informative error.
 }
+\examples{
+\dontrun{
+ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
+checkXPtr(ptr, "double", c("int", "double")) # returns silently
+checkXPtr(ptr, "int", c("double", "std::string")) # throws error
+}
+}
 \seealso{
 \code{\link{cppXPtr}}
 }

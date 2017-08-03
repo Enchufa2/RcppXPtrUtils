@@ -11,6 +11,12 @@
 #' @param call. logical, indicating if the call should become part of the error message.
 #'
 #' @seealso \code{\link{cppXPtr}}
+#' @examples
+#' \dontrun{
+#' ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
+#' checkXPtr(ptr, "double", c("int", "double")) # returns silently
+#' checkXPtr(ptr, "int", c("double", "std::string")) # throws error
+#' }
 #' @export
 checkXPtr <- function(ptr, type, args = character(), call. = TRUE) {
   stopifnot(inherits(ptr, "XPtr"))
@@ -26,12 +32,12 @@ checkXPtr <- function(ptr, type, args = character(), call. = TRUE) {
 
   if (length(args) != length(.args.))
     msg <- paste(c(
-      msg, paste0("  Wrong number of arguments, should be ", length(args), ".")
+      msg, paste0("  Wrong number of arguments, should be ", length(args), "'.")
     ), collapse = "\n")
   else {
     for (i in which(!(args == .args.)))
       msg <- paste(c(
-        msg, paste0("  Wrong argument type '", .args.[[i]], "', should be '", args[[i]], ".")
+        msg, paste0("  Wrong argument type '", .args.[[i]], "', should be '", args[[i]], "'.")
       ), collapse = "\n")
   }
 

@@ -1,6 +1,6 @@
 Package: RcppXPtrUtils
 Type: Package
-Title: XPtr Add-ons for 'Rcpp'
+Title: XPtr Add-Ons for 'Rcpp'
 Version: 0.0.0.9000
 Authors@R: c(
     person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))

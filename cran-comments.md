@@ -1,4 +1,7 @@
-## First submission
+## First submission (resubmission)
+
+* Title field fixed.
+* Examples added.
 
 This package provides Rcpp add-ons for retrieving and checking XPtrs to user-supplied C++ functions.
 
@@ -18,6 +21,10 @@ There were 1 NOTEs:
 Maintainer: ‘Iñaki Ucar <i.ucar86@gmail.com>’
 
 New submission
+
+Possibly mis-spelled words in DESCRIPTION:
+  XPtr (3:8)
+  Ons (3:17)
 
 ## Downstream dependencies
 

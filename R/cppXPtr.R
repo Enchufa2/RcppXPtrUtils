@@ -9,6 +9,12 @@
 #' @return An object of class \code{XPtr} that points to the compiled function.
 #'
 #' @seealso \code{\link{cppFunction}}, \code{\link{checkXPtr}}
+#' @examples
+#' \dontrun{
+#' ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
+#' class(ptr)
+#' print(ptr)
+#' }
 #' @export
 cppXPtr <- function(code,
                     depends = character(),
