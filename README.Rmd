@@ -40,7 +40,7 @@ devtools::install_github("Enchufa2/RcppXPtrUtils")
 
 Let's suppose we have a package with a core written in C++, connected to an R API with `Rcpp`. It accepts a user-supplied R function to perform some processing:
 
-```{C, eval=FALSE}
+```{r, engine='Rcpp', eval=FALSE}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -60,7 +60,7 @@ NumericVector execute_r(Function func, double l) {
 
 But calling R from C++ is slow, so we can think about improving the performance by accepting a compiled function. In order to do this, the core can be easily extended to accept an `XPtr` to a compiled function:
 
-```{C, eval=FALSE}
+```{r, engine='Rcpp', eval=FALSE}
 typedef SEXP (*funcPtr)(int, double);
 
 // [[Rcpp::export]]
@@ -70,8 +70,7 @@ NumericVector execute_cpp(SEXP func_, double l) {
 }
 ```
 
-```{r, echo=FALSE}
-Rcpp::sourceCpp(code='
+```{r, engine='Rcpp', echo=FALSE}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -95,7 +94,6 @@ NumericVector execute_cpp(SEXP func_, double l) {
   funcPtr func = *XPtr<funcPtr>(func_);
   return core_processing<funcPtr>(func, l);
 }
-')
 ```
 
 To easily leverage this feature, the `RcppXPtrUtils` package provides `cppXPtr()`, which compiles a user-supplied C++ function using `Rcpp::cppFunction()` and returns an `XPtr`:

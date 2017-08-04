@@ -28,7 +28,7 @@ Use case
 
 Let's suppose we have a package with a core written in C++, connected to an R API with `Rcpp`. It accepts a user-supplied R function to perform some processing:
 
-``` c
+``` cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -48,7 +48,7 @@ NumericVector execute_r(Function func, double l) {
 
 But calling R from C++ is slow, so we can think about improving the performance by accepting a compiled function. In order to do this, the core can be easily extended to accept an `XPtr` to a compiled function:
 
-``` c
+``` cpp
 typedef SEXP (*funcPtr)(int, double);
 
 // [[Rcpp::export]]
@@ -74,28 +74,28 @@ microbenchmark::microbenchmark(
   execute_cpp(func_cpp, 1.5)
 )
 #> Unit: microseconds
-#>                        expr       min         lq       mean     median
-#>      execute_r(func_r, 1.5) 13559.538 14823.5195 15968.6778 15492.5525
-#>  execute_cpp(func_cpp, 1.5)   169.514   201.2005   264.3814   227.4585
+#>                        expr       min        lq       mean     median
+#>      execute_r(func_r, 1.5) 14088.833 15408.180 17368.0184 16589.1570
+#>  execute_cpp(func_cpp, 1.5)   187.357   210.293   270.8183   234.8045
 #>          uq       max neval cld
-#>  16518.2570 21561.296   100   b
-#>    268.2495  1780.512   100  a
+#>  18207.6390 29931.708   100   b
+#>    262.8495  1179.962   100  a
 ```
 
 The object returned by `cppXPtr()` is just an `externalptr` wrapped into an object of class `XPtr`, which stores the signature of the function. If you are a package author, you probably want to re-export `cppXPtr()` and ensure that user-supplied C++ functions comply with the internal signatures in order to avoid runtime errors. This can be done with the `checkXPtr()` function:
 
 ``` r
 func_cpp
-#> 'SEXP foo(int n, double l)' <pointer: 0x55c9681442d0>
+#> 'SEXP foo(int n, double l)' <pointer: 0x56444b3f2630>
 checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
 checkXPtr(func_cpp, "int", c("int", "double"))
 #> Error in checkXPtr(func_cpp, "int", c("int", "double")): Bad XPtr signature:
 #>   Wrong return type 'SEXP', should be 'int'.
 checkXPtr(func_cpp, "SEXP", c("int"))
 #> Error in checkXPtr(func_cpp, "SEXP", c("int")): Bad XPtr signature:
-#>   Wrong number of arguments, should be 1.
+#>   Wrong number of arguments, should be 1'.
 checkXPtr(func_cpp, "SEXP", c("double", "int"))
 #> Error in checkXPtr(func_cpp, "SEXP", c("double", "int")): Bad XPtr signature:
-#>   Wrong argument type 'int', should be 'double.
-#>   Wrong argument type 'double', should be 'int.
+#>   Wrong argument type 'int', should be 'double'.
+#>   Wrong argument type 'double', should be 'int'.
 ```
