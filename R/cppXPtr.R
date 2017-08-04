@@ -10,7 +10,8 @@
 #'
 #' @seealso \code{\link{cppFunction}}, \code{\link{checkXPtr}}
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # takes time to compile
 #' ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
 #' class(ptr)
 #' print(ptr)

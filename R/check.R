@@ -12,7 +12,8 @@
 #'
 #' @seealso \code{\link{cppXPtr}}
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # takes time to compile
 #' ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
 #' checkXPtr(ptr, "double", c("int", "double")) # returns silently
 #' checkXPtr(ptr, "int", c("double", "std::string")) # throws error

@@ -22,7 +22,8 @@ class \code{XPtr}. If the user-supplied C++ function does not match the
 signature, the wrapper throws an informative error.
 }
 \examples{
-\dontrun{
+\donttest{
+# takes time to compile
 ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
 checkXPtr(ptr, "double", c("int", "double")) # returns silently
 checkXPtr(ptr, "int", c("double", "std::string")) # throws error

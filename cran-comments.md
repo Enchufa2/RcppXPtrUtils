@@ -1,7 +1,6 @@
 ## First submission (resubmission)
 
-* Title field fixed.
-* Examples added.
+* donttest instead of dontrun in examples.
 
 This package provides Rcpp add-ons for retrieving and checking XPtrs to user-supplied C++ functions.
 
