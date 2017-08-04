@@ -1,7 +1,7 @@
 Package: RcppXPtrUtils
 Type: Package
 Title: XPtr Add-Ons for 'Rcpp'
-Version: 0.0.0.9000
+Version: 0.1.0.9000
 Authors@R: c(
     person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
 Description: Provides the means to compile user-supplied C++ functions with 
