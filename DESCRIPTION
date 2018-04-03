@@ -3,7 +3,8 @@ Type: Package
 Title: XPtr Add-Ons for 'Rcpp'
 Version: 0.1.0.9000
 Authors@R: c(
-    person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
+    person("Iñaki", "Ucar", email="i.ucar86@gmail.com", 
+      role=c("aut", "cph", "cre"), comment=c(ORCID="0000-0001-6403-5550")))
 Description: Provides the means to compile user-supplied C++ functions with 
   'Rcpp' and retrieve an 'XPtr' that can be passed to other C++ components.
 License: MIT + file LICENSE
