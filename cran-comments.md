@@ -1,8 +1,7 @@
-## First submission (resubmission)
+## Patch release
 
-* donttest instead of dontrun in examples.
-
-This package provides Rcpp add-ons for retrieving and checking XPtrs to user-supplied C++ functions.
+The maintainer's address has changed. It is the same account, just a different
+alias. I'm sending confirmation from the previous address to CRAN-submissions.
 
 ## Test environments
 
@@ -12,18 +11,7 @@ This package provides Rcpp add-ons for retrieving and checking XPtrs to user-sup
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs.
-
-There were 1 NOTEs:
-
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Iñaki Ucar <i.ucar86@gmail.com>’
-
-New submission
-
-Possibly mis-spelled words in DESCRIPTION:
-  XPtr (3:8)
-  Ons (3:17)
+There were no ERRORs, WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
