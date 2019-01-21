@@ -6,8 +6,8 @@
 \usage{
 cppXPtr(code, depends = character(), plugins = character(),
   includes = character(), rebuild = FALSE,
-  cacheDir = getOption("rcpp.cache.dir", tempdir()), showOutput = verbose,
-  verbose = getOption("verbose"))
+  cacheDir = getOption("rcpp.cache.dir", tempdir()),
+  showOutput = verbose, verbose = getOption("verbose"))
 }
 \arguments{
 \item{code}{
@@ -19,7 +19,7 @@ cppXPtr(code, depends = character(), plugins = character(),
 }
 
 \item{plugins}{
-    Character vector of \link[inline:plugins]{inline plugins} to use for the compliation.
+    Character vector of \link[inline:plugins]{inline plugins} to use for the compilation.
   }
 
 \item{includes}{

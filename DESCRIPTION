@@ -14,5 +14,4 @@ BugReports: https://github.com/Enchufa2/RcppXPtrUtils/issues
 Depends: R (>= 3.0.0)
 Imports: Rcpp
 Suggests: testthat, covr
-ByteCompile: yes
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

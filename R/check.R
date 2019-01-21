@@ -28,17 +28,17 @@ checkXPtr <- function(ptr, type, args = character(), call. = TRUE) {
 
   if (type != .type.)
     msg <- paste(c(
-      msg, paste0("  Wrong return type '", .type., "', should be '", type, "'.")
+      msg, paste0("  Wrong return type '", type, "', should be '", .type., "'.")
     ), collapse = "\n")
 
   if (length(args) != length(.args.))
     msg <- paste(c(
-      msg, paste0("  Wrong number of arguments, should be ", length(args), "'.")
+      msg, paste0("  Wrong number of arguments, should be ", length(.args.), "'.")
     ), collapse = "\n")
   else {
     for (i in which(!(args == .args.)))
       msg <- paste(c(
-        msg, paste0("  Wrong argument type '", .args.[[i]], "', should be '", args[[i]], "'.")
+        msg, paste0("  Wrong argument type '", args[[i]], "', should be '", .args.[[i]], "'.")
       ), collapse = "\n")
   }
 
