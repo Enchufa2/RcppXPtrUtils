@@ -16,7 +16,7 @@
 #' # takes time to compile
 #' ptr <- cppXPtr("double foo(int a, double b) { return a + b; }")
 #' checkXPtr(ptr, "double", c("int", "double")) # returns silently
-#' checkXPtr(ptr, "int", c("double", "std::string")) # throws error
+#' try(checkXPtr(ptr, "int", c("double", "std::string"))) # throws error
 #' }
 #' @export
 checkXPtr <- function(ptr, type, args = character(), call. = TRUE) {

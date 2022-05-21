@@ -4,10 +4,16 @@
 \alias{cppXPtr}
 \title{Define an \code{XPtr} with a C++ Implementation}
 \usage{
-cppXPtr(code, depends = character(), plugins = character(),
-  includes = character(), rebuild = FALSE,
+cppXPtr(
+  code,
+  depends = character(),
+  plugins = character(),
+  includes = character(),
+  rebuild = FALSE,
   cacheDir = getOption("rcpp.cache.dir", tempdir()),
-  showOutput = verbose, verbose = getOption("verbose"))
+  showOutput = verbose,
+  verbose = getOption("verbose")
+)
 }
 \arguments{
 \item{code}{
