@@ -4,10 +4,10 @@
 # RcppXPtrUtils: XPtr Add-Ons for ‘Rcpp’
 
 [![Build
-Status](https://travis-ci.org/Enchufa2/RcppXPtrUtils.svg?branch=master)](https://travis-ci.org/Enchufa2/RcppXPtrUtils)
+Status](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml/badge.svg)](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml)
 [![Coverage
 Status](https://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://codecov.io/gh/Enchufa2/RcppXPtrUtils)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 [![Downloads](https://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 
 The **RcppXPtrUtils** package provides the means to compile
@@ -86,12 +86,12 @@ microbenchmark::microbenchmark(
   execute_cpp(func_cpp, 1.5)
 )
 #> Unit: microseconds
-#>                        expr       min        lq       mean     median
-#>      execute_r(func_r, 1.5) 14927.513 15231.344 16129.4279 15537.3765
-#>  execute_cpp(func_cpp, 1.5)   156.452   160.399   183.4883   166.3005
-#>          uq       max neval
-#>  16882.4340 22050.064   100
-#>    172.8565  1415.003   100
+#>                        expr      min        lq       mean    median        uq
+#>      execute_r(func_r, 1.5) 14371.06 16081.805 17159.7910 16887.638 18066.667
+#>  execute_cpp(func_cpp, 1.5)   206.18   218.306   281.4874   232.214   268.673
+#>        max neval cld
+#>  22969.213   100   b
+#>   2432.279   100  a
 ```
 
 The object returned by `cppXPtr()` is just an `externalptr` wrapped into
@@ -103,7 +103,7 @@ signatures in order to avoid runtime errors. This can be done with the
 
 ``` r
 func_cpp
-#> 'SEXP foo(int n, double l)' <pointer: 0x556cbfda2f30>
+#> 'SEXP foo(int n, double l)' <pointer: 0x5636b1e8a840>
 checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
 checkXPtr(func_cpp, "int", c("int", "double"))
 #> Error in checkXPtr(func_cpp, "int", c("int", "double")): Bad XPtr signature:

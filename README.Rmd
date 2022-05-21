@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 # RcppXPtrUtils: XPtr Add-Ons for 'Rcpp'
 
-[![Build Status](https://travis-ci.org/Enchufa2/RcppXPtrUtils.svg?branch=master)](https://travis-ci.org/Enchufa2/RcppXPtrUtils)
+[![Build Status](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml/badge.svg)](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml)
 [![Coverage Status](https://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://codecov.io/gh/Enchufa2/RcppXPtrUtils)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 [![Downloads](https://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
