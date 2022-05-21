@@ -1,15 +1,12 @@
 ## Patch release
 
-Fixes some error messages.
-
-The maintainer's address has changed. It is the same account, just a different
-alias. I'm sending confirmation from the previous address to CRAN-submissions.
+Fixes CRAN issues.
 
 ## Test environments
 
-* Fedora 29 + GCC + clang (local), R 3.5.1
-* Ubuntu 14.04 + GCC (on travis-ci), R 3.4.4, 3.5.1, devel
-* win-builder, R devel
+- Fedora 35 + GCC (local), R 4.1.3
+- macOS-latest, windows-latest, ubuntu-latest (on GA), R devel, release, oldrel
+- win-builder, R devel
 
 ## R CMD check results
 
