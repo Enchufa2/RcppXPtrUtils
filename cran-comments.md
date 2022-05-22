@@ -1,6 +1,6 @@
-## Patch release
+## Patch release (resubmission)
 
-Fixes CRAN issues.
+Fixes CRAN issues. Fixes URLs.
 
 ## Test environments
 

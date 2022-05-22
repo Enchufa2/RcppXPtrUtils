@@ -6,7 +6,7 @@
 [![Build
 Status](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml/badge.svg)](https://github.com/Enchufa2/RcppXPtrUtils/actions/workflows/build.yml)
 [![Coverage
-Status](https://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://codecov.io/gh/Enchufa2/RcppXPtrUtils)
+Status](https://codecov.io/gh/Enchufa2/RcppXPtrUtils/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Enchufa2/RcppXPtrUtils)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 [![Downloads](https://cranlogs.r-pkg.org/badges/RcppXPtrUtils)](https://cran.r-project.org/package=RcppXPtrUtils)
 
@@ -22,12 +22,11 @@ Install the release version from CRAN:
 install.packages("RcppXPtrUtils")
 ```
 
-The installation from GitHub requires the
-[devtools](https://github.com/hadley/devtools) package.
+The installation from GitHub can be done with the
+[remotes](https://cran.r-project.org/package=remotes) package:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("Enchufa2/RcppXPtrUtils")
+remotes::install_github("Enchufa2/RcppXPtrUtils")
 ```
 
 ## Use case
@@ -86,12 +85,12 @@ microbenchmark::microbenchmark(
   execute_cpp(func_cpp, 1.5)
 )
 #> Unit: microseconds
-#>                        expr      min        lq       mean    median        uq
-#>      execute_r(func_r, 1.5) 14371.06 16081.805 17159.7910 16887.638 18066.667
-#>  execute_cpp(func_cpp, 1.5)   206.18   218.306   281.4874   232.214   268.673
+#>                        expr       min        lq       mean     median        uq
+#>      execute_r(func_r, 1.5) 14910.161 16261.928 17628.8078 17468.1140 18635.388
+#>  execute_cpp(func_cpp, 1.5)   213.123   223.125   310.2708   237.0265   279.808
 #>        max neval cld
-#>  22969.213   100   b
-#>   2432.279   100  a
+#>  22657.568   100   b
+#>   2417.878   100  a
 ```
 
 The object returned by `cppXPtr()` is just an `externalptr` wrapped into
@@ -103,7 +102,7 @@ signatures in order to avoid runtime errors. This can be done with the
 
 ``` r
 func_cpp
-#> 'SEXP foo(int n, double l)' <pointer: 0x5636b1e8a840>
+#> 'SEXP foo(int n, double l)' <pointer: 0x55909eb28830>
 checkXPtr(func_cpp, "SEXP", c("int", "double")) # returns silently
 checkXPtr(func_cpp, "int", c("int", "double"))
 #> Error in checkXPtr(func_cpp, "int", c("int", "double")): Bad XPtr signature:
