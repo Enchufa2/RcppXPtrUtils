@@ -1,12 +1,11 @@
-## Patch release (resubmission)
+## Patch release
 
-Fixes CRAN issues. Fixes URLs.
+Fixes CRAN issues.
 
 ## Test environments
 
-- Fedora 35 + GCC (local), R 4.1.3
-- macOS-latest, windows-latest, ubuntu-latest (on GA), R devel, release, oldrel
-- win-builder, R devel
+* Ubuntu, Windows, MacOS (on GHA), R oldrel, release, devel
+* win-builder, R devel
 
 ## R CMD check results
 

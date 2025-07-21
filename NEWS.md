@@ -1,4 +1,4 @@
-# RcppXPtrUtils devel
+# RcppXPtrUtils 0.1.3
 
 - Fix cross-references in documentation (#3).
 
